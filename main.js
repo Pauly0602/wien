@@ -17,10 +17,6 @@ L.tileLayer('https://mapsneu.wien.gv.at/basemap/bmapgrau/normal/google3857/{z}/{
     attribution: 'Hintergrundkarte: <a href="https://www.basemap.at">basemap.at</a>'
 }).addTo(map);
 
-// Marker mit Popup beim Stephansdom
-let marker = L.marker([stephansdom.lat, stephansdom.lng]).addTo(map);
-marker.bindPopup(stephansdom.title).openPopup();
-
 // Maßstab in Karte 
 L.control.scale({
 imperial: false 
@@ -38,8 +34,8 @@ async function loadSights(url) {
 }
 loadSights("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json")
 
-// Liniennetz Vienna Sightseeing
-async function loadSights(url) {
+// Liniennetz Wien
+async function loadLines(url) {
     console.log(url);
     let response = await fetch(url);
     let jsondata = await response.json();
@@ -47,9 +43,9 @@ async function loadSights(url) {
     L.geoJSON(jsondata, {
         attribution: "Datenquelle: <a href='https://data.wien.gv.at'>Stadt Wien</a>"
     }).addTo(map);
-}loadSights("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKLINIEVSLOGD&srsName=EPSG:4326&outputFormat=json")
-// Haltestellen Vienna Sightseeing 
-async function loadSights(url) {
+}loadLines("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKLINIEVSLOGD&srsName=EPSG:4326&outputFormat=json")
+// Haltestellen Wien
+async function loadStops(url) {
     console.log(url);
     let response = await fetch(url);
     let jsondata = await response.json();
@@ -57,9 +53,9 @@ async function loadSights(url) {
     L.geoJSON(jsondata, {
         attribution: "Datenquelle: <a href='https://data.wien.gv.at'>Stadt Wien</a>"
     }).addTo(map);
-}loadSights("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKHTSVSLOGD&srsName=EPSG:4326&outputFormat=json")
-// Fußgängerzonen
-async function loadSights(url) {
+}loadStops("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKHTSVSLOGD&srsName=EPSG:4326&outputFormat=json")
+// Fußgängerzonen Wien
+async function loadZones(url) {
     console.log(url);
     let response = await fetch(url);
     let jsondata = await response.json();
@@ -67,4 +63,4 @@ async function loadSights(url) {
     L.geoJSON(jsondata, {
         attribution: "Datenquelle: <a href='https://data.wien.gv.at'>Stadt Wien</a>"
     }).addTo(map);
-}loadSights("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:FUSSGEHERZONEOGD&srsName=EPSG:4326&outputFormat=json")
+}loadZones("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:FUSSGEHERZONEOGD&srsName=EPSG:4326&outputFormat=json")
