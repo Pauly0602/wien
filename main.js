@@ -22,10 +22,13 @@ zones: L.featureGroup ().addTo(map),
 
 // Layercontrol 
 L.control.layers({
-    "BasemapAT grau": L.tileLayer('https://mapsneu.wien.gv.at/basemap/bmapgrau/normal/google3857/{z}/{y}/{x}.png', {
-        maxZoom: 19,
-        attribution: 'Hintergrundkarte: <a href="https://www.basemap.at">basemap.at</a>'
-}).addTo(map)
+    "BasemapAT": L.tileLayer.provider('BasemapAT.basemap'),
+    "BasemapAT grau": L.tileLayer.provider('BasemapAT.grau'),
+    "BasemapAT overlay": L.tileLayer.provider('BasemapAT.overlay'),
+    "BasemapAT terrain": L.tileLayer.provider('BasemapAT.terrain'),
+    "BasemapAT surface": L.tileLayer.provider('BasemapAT.surface'),
+    "BasemapAT highdpi": L.tileLayer.provider('BasemapAT.highdpi'),
+    "BasemapAT orthofoto": L.tileLayer.provider('BasemapAT.orthofoto').addTo(map),
 }, {
 "Sehenswürdigkeiten": overlays.sights,
 "Vienna Sightseeing Linien": overlays.lines,
