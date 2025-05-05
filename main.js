@@ -63,7 +63,7 @@ async function loadSights(url) {
 
         },
         onEachFeature: function(feature, layer) {
-            //console.log(feature.properties);
+            //Popup Sehenswürdigkeiten;
             layer.bindPopup(`
                 <img src="${feature.properties.THUMBNAIL}" alt"*">
                 <h4>${feature.properties.NAME}</h4>
@@ -105,13 +105,26 @@ async function loadLines(url) {
 
             return {
                 color: lineColor,
-                weight: 1,
-                opacity: 0.6,
-                fillOpacity: 0.1,
             }
+        },
+        onEachFeature: function (feature, layer) {
+            //Popup Linien;
+            layer.bindPopup(`
+              <h4> <i class="fa-solid fa-bus"></i> ${feature.properties.LINE_NAME} </h4>
+               <i class="fa-regular fa-circle-stop"></i>
+                ${feature.properties.FROM_NAME}
+                <br> 
+                 <i class="fa-solid fa-down-long"></i>
+                 <br>
+                 <i class="fa-regular fa-circle-stop"></i>
+                ${feature.properties.TO_NAME}
+                `);
         }
+        
     }).addTo(overlays.lines);
-}
+};
+
+
 
 // Haltstellen
 async function loadStops(url) {
@@ -193,6 +206,8 @@ async function loadHotels(url) {
         }
     }).addTo(overlays.hotels);
 }
+
+
 // GeoJSON und visualisieren
 loadSights("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json");
 loadLines("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKLINIEVSLOGD&srsName=EPSG:4326&outputFormat=json");
