@@ -236,7 +236,8 @@ async function loadHotels(url) {
                 <br> 
             Tel.: <a href="  Tel: ${feature.properties.KONTAKT_TEL}" > ${feature.properties.KONTAKT_TEL}</a>
             <br>
-            <a href=" ${feature.properties.KONTAKT_EMAIL}"</a> 
+            <a href=" mailto: ${feature.properties.KONTAKT_EMAIL}"> ${feature.properties.KONTAKT_EMAIL}</a>
+            <br>
             <a href="${feature.properties.WEBLINK1}"> Homepage</a>
                 `);
                 
