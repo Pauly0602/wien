@@ -229,13 +229,17 @@ async function loadHotels(url) {
             //Popup Hotels;
             layer.bindPopup(`
               <h4> ${feature.properties.BETRIEB} </h4>
-               ${feature.properties.KATEGORIE_TXT}
+             Hotel ${feature.properties.KATEGORIE_TXT}
                <hr>
                <br>
              Addr. ${feature.properties.ADRESSE}
                 <br> 
-            Tel.  ${feature.properties.KONTAKT_TEL}
+            Tel.: <a href="  Tel: ${feature.properties.KONTAKT_TEL}" > ${feature.properties.KONTAKT_TEL}</a>
+            <br>
+            <a href=" ${feature.properties.KONTAKT_EMAIL}"</a> 
+            <a href="${feature.properties.WEBLINK1}"> Homepage</a>
                 `);
+                
         }
     }).addTo(overlays.hotels);
 }
