@@ -174,7 +174,18 @@ async function loadZones(url) {
                 opacity: 0.4,
                 fillOpacity: 0.1,
             }
+        }, 
+        onEachFeature: function (feature, layer) {
+            //Popup Fußgängerzonen;
+            layer.bindPopup(`
+              <h4> ${feature.properties.ADRESSE} </h4>
+              <i class="fa-regular fa-clock"></i> ${feature.properties.ZEITRAUM}
+                <br> 
+                <i class="fa-solid fa-circle-info"></i>
+                ${feature.properties.AUSN_TEXT}
+                `);
         }
+        
     }).addTo(overlays.zones);
 }
 
